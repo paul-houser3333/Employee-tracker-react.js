@@ -3,26 +3,25 @@ import { EmployeeContext } from "../components/EmployeeContext"
 import axios from "axios"
 
 export function useGet(url) {
-    const { employees, setEmployees, displayedEmployees, setDisplayedEmployees } = useContext(EmployeeContext)
-
- 
+    let { employees, setEmployees, displayedEmployees, setDisplayedEmployees } = useContext(EmployeeContext)
 
     // gets employees from an api, stores them in both employees, and displayed employees. Only occurs once when component is mounted.
     useEffect(() => {
         async function getEmployees() {
             try {
-                const response = await axios.get(url)
-                // using employees to store a copy of all the employees that will not be changed
+                let response = await axios.get(url)
+                // using employees to store a copy of all the employees that will not be manipulated
                 setEmployees(response.data.results)
-                // employees to be a changed to version of the employees that will be displayed for sorting and filtering.
+                // using displayed employees to be a manipulated version of the employees that will be displayed for sorting and filtering.
                 setDisplayedEmployees(response.data.results)
             }
             catch (error) {
                 console.log("error ocurred getting info from the API: ", error)
             }
         }
-        getEmployees()
-    }, [])
+        getEmployees();
+    }, []);
+
 
     // used to decide which sort function to trigger
     function sortFunc(sort) {
@@ -47,7 +46,8 @@ export function useGet(url) {
                 return 1;
             }
         })
-        // You have to spread, because this creates a new variable, instead of just updating the variable. React will not recognize it as an update if you just update the variable.
+        // You have to spread, because this creates a new variable, instead of just updating the variable. 
+        //React will not recognize it as an update if you just update the variable.
         setDisplayedEmployees([...employees])
     }
 
@@ -59,5 +59,8 @@ export function useGet(url) {
         setDisplayedEmployees([...employees])
     }
 
-    return { displayedEmployees, sortFunc }
+    return { displayedEmployees, sortFunc };
+     
+
 }
+export { useGet };

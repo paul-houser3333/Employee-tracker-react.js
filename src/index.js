@@ -9,6 +9,6 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // .register() will allow Offline and load faster. 
 // made debuging more difficult... I found out.
 // 
-//serviceWorker.unregister();
+serviceWorker.unregister();
 
-serviceWorker.register();
+//serviceWorker.register();
