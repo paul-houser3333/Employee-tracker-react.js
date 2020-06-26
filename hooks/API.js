@@ -12,9 +12,9 @@ export function useGet(url) {
         async function getEmployees() {
             try {
                 const response = await axios.get(url)
-                // using employees to store a copy of all the employees that will not be manipulated
+                // using employees to store a copy of all the employees that will not be changed
                 setEmployees(response.data.results)
-                // using displayed employees to be a manipulated version of the employees that will be displayed for sorting and filtering.
+                // employees to be a changed to version of the employees that will be displayed for sorting and filtering.
                 setDisplayedEmployees(response.data.results)
             }
             catch (error) {
