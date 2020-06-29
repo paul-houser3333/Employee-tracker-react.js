@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { EmployeeContext } from './EmployeeContext.js';
-import "./Search.css"
 
 function Search() {
     // stores the characters being entered 

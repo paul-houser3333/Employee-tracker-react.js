@@ -24,7 +24,7 @@ export function useGet(url) {
         getEmployees()
     }, [])
 
-    // used to decide which sort function to trigger
+    // used to decide which function to trigger
     function sortFunc(sort) {
         switch (sort) {
             case "name":
